@@ -1,4 +1,4 @@
-/*	WebSiteAdvantage KeePass to Firefox 
+/*	WebSiteAdvantage KeePass to Firefox
  *	Copyright (C) 2008 - 2012  Anthony James McCreath
  *
  *	This library is free software; you can redistribute it and/or
@@ -63,7 +63,7 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
 
 		protected override void OnClosing(CancelEventArgs e)
 		{
-			StopThread(); 
+			StopThread();
 			base.OnClosing(e);
 		}
 		#endregion
@@ -132,12 +132,12 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
 		public string KeePassFile
 		{
 			get { return _KeePassFile; }
-			set 
-			{ 
+			set
+			{
 				if (value.Contains("."))
-					_KeePassFile = value; 
+					_KeePassFile = value;
 				else
-					_KeePassFile = value+".xml"; 
+					_KeePassFile = value+".xml";
 			}
 		}
 
@@ -213,12 +213,12 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
 			set { _ProfilePath = value; }
 		}
 
-	
+
 		#endregion
 
 		#region Generators
 		/// <summary>
-		/// Create the keepass file using an exported firefox file 
+		/// Create the keepass file using an exported firefox file
 		/// </summary>
 		private void GenerateUsingExport()
 		{
@@ -438,7 +438,7 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
 		/// <summary>
 		/// generates a keepass xml file by directly accessing firefoxes passwords
 		/// designed to be used in a thread
-		/// uses the thread 
+		/// uses the thread
 		/// </summary>
 		private void GenerateUsingFirefox()
 		{
@@ -447,7 +447,7 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
 			{
 				InternetAccessor internetAccessor = new InternetAccessor();
 
-				FirefoxProfile profile = new FirefoxProfile(this.ProfilePath); 
+				FirefoxProfile profile = new FirefoxProfile(this.ProfilePath);
 
 				profile.Login(this.FirefoxMasterPassword);
 
@@ -537,7 +537,7 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
                         }
 
 
-                        string now = XmlConvert.ToString(DateTime.Now, "yyyy-MM-ddTHH:mm:ss");
+                        string now = XmlConvert.ToString(DateTime.UtcNow, "yyyy-MM-ddTHH:mm:ssK");
 
                         // create xml
 
@@ -591,15 +591,15 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
 
 						XmlElement keePassCreatedElement = keePassDocument.CreateElement("creationtime");
 						keePassEntryElement.AppendChild(keePassCreatedElement);
-						keePassCreatedElement.InnerText = now;
+						keePassCreatedElement.InnerText = signon.TimeCreated?.ToString("yyyy-MM-ddTHH:mm:ssK") ?? now;
 
 						XmlElement keePassModifiedElement = keePassDocument.CreateElement("lastmodtime");
 						keePassEntryElement.AppendChild(keePassModifiedElement);
-						keePassModifiedElement.InnerText = now;
+						keePassModifiedElement.InnerText = signon.TimePasswordChanged?.ToString("yyyy-MM-ddTHH:mm:ssK") ?? now;
 
 						XmlElement keePassAccessedElement = keePassDocument.CreateElement("lastaccesstime");
 						keePassEntryElement.AppendChild(keePassAccessedElement);
-						keePassAccessedElement.InnerText = now;
+						keePassAccessedElement.InnerText = signon.TimeLastUsed?.ToString("yyyy-MM-ddTHH:mm:ssK") ?? now;
 
 						// so it does not expire
 						XmlElement keePassExpiresElement = keePassDocument.CreateElement("expiretime");
@@ -795,7 +795,7 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
 					break;
 				}
 			}
-			
+
 		}
 
         private void buttonFindProfiles_Click(object sender, EventArgs e)
@@ -803,7 +803,7 @@ namespace WebSiteAdvantage.KeePass.FireFoxConverter
             DialogResult result = MessageBox.Show(
                 "Yes - If you wish to load profiles via the profiles ini file."+ Environment.NewLine+
                 "No  - To directly select a profiles folder.",
-                "Load Profiles ini file?", 
+                "Load Profiles ini file?",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
 
