@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSiteAdvantage.KeePass.Firefox.Converter", "WebSiteAdvantage.KeePass.Firefox.Converter.csproj", "{1A4E94F3-EA34-4E30-BD31-9779B5A7D549}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSiteAdvantage.KeePass.Firefox.Converter", "WebSiteAdvantage.KeePass.Firefox.Converter\WebSiteAdvantage.KeePass.Firefox.Converter.csproj", "{1A4E94F3-EA34-4E30-BD31-9779B5A7D549}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSiteAdvantage.KeePass.Firefox", "WebSiteAdvantage.KeePass.Firefox\WebSiteAdvantage.KeePass.Firefox\WebSiteAdvantage.KeePass.Firefox.csproj", "{C2CE32F2-A994-4645-92AB-EF89A13BD422}"
 EndProject
