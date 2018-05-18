@@ -1,0 +1,3 @@
+[submodule "WebSiteAdvantage.KeePass.Firefox"]
+	path = WebSiteAdvantage.KeePass.Firefox
+	url = https://github.com/MarkKoz/WebSiteAdvantage.KeePass.Firefox.git
