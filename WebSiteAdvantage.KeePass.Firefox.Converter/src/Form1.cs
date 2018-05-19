@@ -21,36 +21,54 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 
+using NLog;
+
+using WebSiteAdvantage.KeePass.Firefox.Logging;
+using WebSiteAdvantage.KeePass.Firefox.Profiles;
+using WebSiteAdvantage.KeePass.Firefox.Signons;
+using WebSiteAdvantage.KeePass.Firefox.Utilities;
+
 namespace WebSiteAdvantage.KeePass.Firefox.Converter
 {
-    public delegate void LogEventDeligate(string message);
     public delegate void LogProgressDeligate(int percent);
     public delegate void ThreadFinishedDeligate(Exception ex);
 
     public partial class Form1 : Form
     {
+        private const string AutoTypeSequence = "{USERNAME}{TAB}{PASSWORD}{ENTER}";
+        private const int MaxTitleLength = 15;
+
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
         #region Constructor
+
         public Form1()
         {
             InitializeComponent();
 
-            this.comboBoxIconName.SelectedIndex = 16;
+            iconComboBox.SelectedIndex = 16;
         }
+
         #endregion
 
         #region Thread Management
-        private Thread _Thread = null;
+
+        private Thread thread;
+
         protected void StopThread()
         {
-            if (_Thread != null)
+            if (thread != null)
             {
-                _Thread.Abort();
-                _Thread = null;
+                thread.Abort();
+                thread = null;
             }
         }
 
@@ -59,6 +77,7 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
             StopThread();
             base.OnClosing(e);
         }
+
         #endregion
 
         #region Thread Events
@@ -69,12 +88,10 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
         /// <param name="percent"></param>
         protected void LogProgress(int percent)
         {
-            if (this.InvokeRequired)
-                this.Invoke(new LogProgressDeligate(LogProgress), new object[] { percent });
+            if (InvokeRequired)
+                Invoke(new LogProgressDeligate(LogProgress), percent);
             else
-            {
-                this.progressBar1.Value = percent;
-            }
+                progressBar.Value = percent;
         }
 
         /// <summary>
@@ -84,13 +101,15 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
         /// <param name="ex"></param>
         protected void ThreadFinished(Exception ex)
         {
-            if (this.InvokeRequired)
-                this.Invoke(new ThreadFinishedDeligate(ThreadFinished), new object[] { ex });
+            if (InvokeRequired)
+            {
+                Invoke(new ThreadFinishedDeligate(ThreadFinished), ex);
+            }
             else
             {
-                buttonGenerate.Text = "Start";
-                _Thread = null;
-                this.tabControl1.Enabled = true;
+                startButton.Text = "Start";
+                thread = null;
+                settingsTab.Enabled = true;
 
                 if (ex == null)
                 {
@@ -100,116 +119,75 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                 else
                 {
                     if (ex is ThreadAbortException)
+                    {
                         MessageBox.Show("Stopped", "Converting", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                     else
                     {
                         if (ex.Message.Contains("Failed to Validate Password"))
                             MessageBox.Show(ex.Message, "Converting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         else
-                        {
-                            ErrorMessage.ShowErrorMessage("Convertor", "Converting Failed", ex);
-                        }
+                            ErrorDialog.Show("Converting Failed", ex);
 
-                        KeePassUtilities.LogException(ex);
+                        Logger.Error(ex);
                     }
                 }
             }
         }
         #endregion
 
-        #region Data For Thread
-        private string _KeePassFile;
+        #region Data for Thread
+
+        private string keePassFile;
+
         /// <summary>
         /// The file to store the result in
         /// </summary>
         public string KeePassFile
         {
-            get { return _KeePassFile; }
-            set
-            {
-                if (value.Contains("."))
-                    _KeePassFile = value;
-                else
-                    _KeePassFile = value+".xml";
-            }
+            get => keePassFile;
+            set => keePassFile = Path.HasExtension(value) ? value : value + ".xml";
         }
 
-        private string _FirefoxFile;
         /// <summary>
         /// The file to load from if using xml exported data
         /// </summary>
-        public string FirefoxFile
-        {
-            get { return _FirefoxFile; }
-            set { _FirefoxFile = value; }
-        }
+        public string FirefoxFile { get; set; }
 
-
-        private bool _GetTitles;
         /// <summary>
         /// If the internet should be used to get titles
         /// </summary>
-        public bool GetTitles
-        {
-            get { return _GetTitles; }
-            set { _GetTitles = value; }
-        }
+        public bool GetTitles { get; set; }
 
-        private bool _GenerateAutoType;
         /// <summary>
         /// Should auttype data be added
         /// </summary>
-        public bool GenerateAutoType
-        {
-            get { return _GenerateAutoType; }
-            set { _GenerateAutoType = value; }
-        }
+        public bool GenerateAutoType { get; set; }
 
-        private string _GroupName;
         /// <summary>
         /// The name of the group to store the entries
         /// </summary>
-        public string GroupName
-        {
-            get { return _GroupName; }
-            set { _GroupName = value; }
-        }
+        public string GroupName { get; set; }
 
-        private int _IconId;
         /// <summary>
         /// The id of the icon to use with all entries
         /// </summary>
-        public int IconId
-        {
-            get { return _IconId; }
-            set { _IconId = value; }
-        }
+        public int IconId { get; set; }
 
-        private string _FirefoxMasterPassword;
         /// <summary>
         /// password to use when accessing firefox
         /// </summary>
-        public string FirefoxMasterPassword
-        {
-            get { return _FirefoxMasterPassword; }
-            set { _FirefoxMasterPassword = value; }
-        }
+        public string FirefoxMasterPassword { get; set; }
 
-
-        private string _ProfilePath;
         /// <summary>
         /// the path to the selected profile
         /// </summary>
-        public string ProfilePath
-        {
-            get { return _ProfilePath; }
-            set { _ProfilePath = value; }
-        }
-
+        public string ProfilePath { get; set; }
 
         #endregion
 
         #region Generators
+
         /// <summary>
         /// Create the keepass file using an exported firefox file
         /// </summary>
@@ -217,18 +195,18 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
         {
             try
             {
-                InternetAccessor internetAccessor = new InternetAccessor();
-
                 // load in the firefox xml document
-                XmlDocument fireFoxDocument = new XmlDocument();
+                var fireFoxDocument = new XmlDocument();
                 FileStream fileStream = File.Open(FirefoxFile, FileMode.Open, FileAccess.Read);
                 try
                 {
-                    XmlReaderSettings settings = new XmlReaderSettings();
-                    settings.CheckCharacters = false;
-                    settings.ValidationType = ValidationType.None;
+                    var settings = new XmlReaderSettings
+                    {
+                        CheckCharacters = false,
+                        ValidationType = ValidationType.None
+                    };
 
-                    XmlReader reader = XmlTextReader.Create(fileStream, settings);
+                    XmlReader reader = XmlReader.Create(fileStream, settings);
 
                     try
                     {
@@ -250,7 +228,6 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     fileStream.Close();
                 }
 
-
                 // get a list of each password node
                 XmlNodeList fireFoxEntryNodes = fireFoxDocument.SelectNodes("xml/entries/entry");
 
@@ -259,7 +236,6 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
                 XmlElement keePassRootElement = keePassDocument.CreateElement("pwlist");
                 keePassDocument.AppendChild(keePassRootElement);
-
 
                 int current = 0;
                 int max = fireFoxEntryNodes.Count;
@@ -272,10 +248,10 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
                     string url = title;
 
-                    string formSubmitURL = fireFoxEntryElement.SelectSingleNode("@formSubmitURL").InnerText;
+                    string formSubmitUrl = fireFoxEntryElement.SelectSingleNode("@formSubmitURL").InnerText;
 
-                    if (!String.IsNullOrEmpty(formSubmitURL))
-                        url = formSubmitURL;
+                    if (!string.IsNullOrEmpty(formSubmitUrl))
+                        url = formSubmitUrl;
 
                     string host = url;
                     try
@@ -289,28 +265,15 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
                     if (GetTitles)
                     {
+                        (internetTitle, _) = await WebScraper.ScrapeAsync(url, scrapeIcon: false);
 
-                        // get the pages title
-                        try
-                        {
-                            internetTitle = internetAccessor.ScrapeTitle(url);
-
-                            if (!String.IsNullOrEmpty(internetTitle))
-                            {
-                                title = internetTitle;
-                            }
-
-                        }
-                        catch (Exception ex)
-                        {
-                            // some issue!
-                            KeePassUtilities.LogException(ex);
-                        }
+                        if (!string.IsNullOrEmpty(internetTitle))
+                            title = internetTitle;
                     }
 
-                    string notes = String.Empty;
+                    string notes = string.Empty;
 
-                    if (checkBoxIncludeImportNotes.Checked)
+                    if (importNotesCheckBox.Checked)
                     {
                         notes +=
                             "Imported from FireFox by the Web Site Advantage Firefox To KeePass Importer" + Environment.NewLine + Environment.NewLine +
@@ -321,18 +284,17 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
                     if (GenerateAutoType)
                     {
-                        if (!String.IsNullOrEmpty(internetTitle))
+                        if (!string.IsNullOrEmpty(internetTitle))
                         {
-
                             notes += Environment.NewLine +
-                                "Auto-Type: " + KeePassUtilities.AutoTypeSequence() + Environment.NewLine +
+                                "Auto-Type: " + AutoTypeSequence + Environment.NewLine +
                                 "Auto-Type-Window: *" + host + "*" + Environment.NewLine +
-                                "Auto-Type-Window: " + KeePassUtilities.AutoTypeWindow(internetTitle) + Environment.NewLine;
+                                "Auto-Type-Window: " + (internetTitle.Length < MaxTitleLength ? internetTitle : internetTitle.Substring(0, MaxTitleLength)) + "*" + Environment.NewLine;
                         }
                         else
                         {
                             notes += Environment.NewLine +
-                                "Auto-Type: " + KeePassUtilities.AutoTypeSequence() + Environment.NewLine +
+                                "Auto-Type: " + AutoTypeSequence + Environment.NewLine +
                                 "Auto-Type-Window: *" + host + "*" + Environment.NewLine;
                         }
                     }
@@ -349,7 +311,7 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     keePassGroupElement.InnerText = GroupName;
 
                     // set the group the password gets stored in
-                    if (!String.IsNullOrEmpty(GroupName))
+                    if (!string.IsNullOrEmpty(GroupName))
                         keePassGroupElement.SetAttribute("tree", GroupName);
 
                     XmlElement keePassTitleElement = keePassDocument.CreateElement("title");
@@ -360,9 +322,9 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     keePassEntryElement.AppendChild(keePassUserNameElement);
                     keePassUserNameElement.InnerText = fireFoxEntryElement.SelectSingleNode("@user").InnerText;
 
-                    XmlElement keePassURLElement = keePassDocument.CreateElement("url");
-                    keePassEntryElement.AppendChild(keePassURLElement);
-                    keePassURLElement.InnerText = fireFoxEntryElement.SelectSingleNode("@host").InnerText;
+                    XmlElement keePassUrlElement = keePassDocument.CreateElement("url");
+                    keePassEntryElement.AppendChild(keePassUrlElement);
+                    keePassUrlElement.InnerText = fireFoxEntryElement.SelectSingleNode("@host").InnerText;
 
 
                     XmlElement keePassPasswordElement = keePassDocument.CreateElement("password");
@@ -370,7 +332,7 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     keePassPasswordElement.InnerText = fireFoxEntryElement.SelectSingleNode("@password").InnerText;
 
                     // put other stuff in the notes
-                    if (!String.IsNullOrEmpty(notes))
+                    if (!string.IsNullOrEmpty(notes))
                     {
                         XmlElement keePassNotesElement = keePassDocument.CreateElement("notes");
                         keePassEntryElement.AppendChild(keePassNotesElement);
@@ -405,7 +367,7 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     keePassExpiresElement.SetAttribute("expires", "false");
                     keePassExpiresElement.InnerText = "2999-12-28T23:59:59";
 
-                    LogProgress((int)((double)(current) * 100 / (double)max));
+                    LogProgress((int) ((double) current * 100 / max));
                 }
 
                 XmlTextWriter writer = new XmlTextWriter(KeePassFile, Encoding.UTF8);
@@ -419,11 +381,11 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     writer.Close();
                 }
 
-                this.ThreadFinished(null);
+                ThreadFinished(null);
             }
             catch (Exception ex)
             {
-                this.ThreadFinished(ex);
+                ThreadFinished(ex);
             }
 
         }
@@ -435,16 +397,10 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
         /// </summary>
         private void GenerateUsingFirefox()
         {
-
             try
             {
-                InternetAccessor internetAccessor = new InternetAccessor();
-
-                FirefoxProfile profile = new FirefoxProfile(this.ProfilePath);
-
-                profile.Login(this.FirefoxMasterPassword);
-
-                FirefoxSignonsFile signonsFile = profile.GetSignonsFile(this.FirefoxMasterPassword);
+                var profile = new Profile(ProfilePath, FirefoxMasterPassword);
+                Signon[] signons = profile.GetSignons().ToArray();
 
                 // the group to store the passwords
 
@@ -455,29 +411,28 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                 keePassDocument.AppendChild(keePassRootElement);
 
                 int current = 0;
-                int max = signonsFile.SignonSites.Count;
+                int max = signons.Length;
                 // loop each input password and generate the output password
-                foreach (FirefoxSignonSite signonSite in signonsFile.SignonSites)
+                foreach (Signon signon in signons)
                 {
                     current++;
 
                     string siteTitle = null;
 
                     if (GetTitles)
-                        siteTitle = internetAccessor.ScrapeTitle(signonSite.Site);
+                        (siteTitle, _) = await WebScraper.ScrapeAsync(signon.Site, scrapeIcon: false);
 
-                    foreach (FirefoxSignon signon in signonSite.Signons)
+                    foreach (FirefoxSignon signon in signon.Signons)
                     {
+                        string title = siteTitle ?? signon.Site;
 
-                        string title = siteTitle == null ? signonSite.Site : siteTitle;
-
-                        if (!String.IsNullOrEmpty(signon.LoginFormDomain))
+                        if (!string.IsNullOrEmpty(signon.LoginFormDomain))
                             title = signon.LoginFormDomain;
 
                         string host = null;
                         try
                         {
-                            Uri uri = new Uri(signonSite.Site);
+                            Uri uri = new Uri(signon.Site);
                             host = uri.Host;
                         }
                         catch { }
@@ -488,42 +443,42 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
                             string internetTitle = null;
 
-                            if (String.IsNullOrEmpty(signon.LoginFormDomain) || signon.LoginFormDomain == signonSite.Site)
+                            if (string.IsNullOrEmpty(signon.LoginFormDomain) || signon.LoginFormDomain == signon.Site)
                                 internetTitle = siteTitle;
                             else
-                                internetTitle = internetAccessor.ScrapeTitle(signon.LoginFormDomain);
+                                (internetTitle, _) = await WebScraper.ScrapeAsync(signon.LoginFormDomain, scrapeIcon: false);
 
-                            if (!String.IsNullOrEmpty(internetTitle))
+                            if (!string.IsNullOrEmpty(internetTitle))
                             {
                                 title = internetTitle;
                             }
 
                         }
 
-                        string notes = String.Empty;
+                        string notes = string.Empty;
 
-                        if (checkBoxIncludeImportNotes.Checked)
+                        if (importNotesCheckBox.Checked)
                         {
                             notes += "Imported from FireFox by the Web Site Advantage Firefox To KeePass" + Environment.NewLine;
                         }
 
                         if (GenerateAutoType)
                         {
-                            if (this.GetTitles)
+                            if (GetTitles)
                             {
 
                                 notes += Environment.NewLine  +
-                                    "Auto-Type: " + KeePassUtilities.AutoTypeSequence() + Environment.NewLine +
-                                    (String.IsNullOrEmpty(host) ? String.Empty : "Auto-Type-Window: *" + host + "*" + Environment.NewLine) +
-                                    "Auto-Type-Window: " + KeePassUtilities.AutoTypeWindow(title) + Environment.NewLine;
+                                    "Auto-Type: " + AutoTypeSequence + Environment.NewLine +
+                                    (string.IsNullOrEmpty(host) ? string.Empty : "Auto-Type-Window: *" + host + "*" + Environment.NewLine) +
+                                    "Auto-Type-Window: " + (title?.Length < MaxTitleLength ? title : title?.Substring(0, MaxTitleLength)) + "*" + Environment.NewLine;
 
                             }
                             else
                             {
-                                if (!String.IsNullOrEmpty(host))
+                                if (!string.IsNullOrEmpty(host))
                                 {
                                     notes += Environment.NewLine  +
-                                        "Auto-Type: " + KeePassUtilities.AutoTypeSequence() + Environment.NewLine +
+                                        "Auto-Type: " + AutoTypeSequence + Environment.NewLine +
                                         "Auto-Type-Window: *" + host + "*" + Environment.NewLine;
                                 }
                             }
@@ -542,7 +497,7 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                         keePassGroupElement.InnerText = GroupName;
 
                         // set the group the password gets stored in
-                        if (!String.IsNullOrEmpty(GroupName))
+                        if (!string.IsNullOrEmpty(GroupName))
                             keePassGroupElement.SetAttribute("tree", GroupName);
 
                         XmlElement keePassTitleElement = keePassDocument.CreateElement("title");
@@ -553,15 +508,15 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                         keePassEntryElement.AppendChild(keePassUserNameElement);
                         keePassUserNameElement.InnerText = signon.UserName;
 
-                        XmlElement keePassURLElement = keePassDocument.CreateElement("url");
-                        keePassEntryElement.AppendChild(keePassURLElement);
-                        keePassURLElement.InnerText = signonSite.Site;
+                        XmlElement keePassUrlElement = keePassDocument.CreateElement("url");
+                        keePassEntryElement.AppendChild(keePassUrlElement);
+                        keePassUrlElement.InnerText = signon.Site;
 
                         XmlElement keePassPasswordElement = keePassDocument.CreateElement("password");
                         keePassEntryElement.AppendChild(keePassPasswordElement);
                         keePassPasswordElement.InnerText = signon.Password;
 
-                        if (!String.IsNullOrEmpty(notes))
+                        if (!string.IsNullOrEmpty(notes))
                         {
                             // put other stuff in the notes
                             XmlElement keePassNotesElement = keePassDocument.CreateElement("notes");
@@ -600,7 +555,7 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                         keePassExpiresElement.SetAttribute("expires", "false");
                         keePassExpiresElement.InnerText = "2999-12-28T23:59:59";
 
-                        LogProgress((int)((double)(current) * 100 / (double)max));
+                        LogProgress((int) ((double) current * 100 / max));
                     }
                 }
 
@@ -617,112 +572,124 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     writer.Close();
                 }
 
-                this.ThreadFinished(null);
+                ThreadFinished(null);
 
 
             }
             catch (Exception ex)
             {
-                this.ThreadFinished(ex);
+                ThreadFinished(ex);
             }
 
         }
+
         #endregion
 
         #region GUI Events to Thread start Generators
+
         /// <summary>
         /// gathers the required data then starts the appropriate thread
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonStart_Click(object sender, EventArgs e)
+        private void StartClickEventHandler(object sender, EventArgs e)
         {
             LogProgress(0); // reset the progress bar
 
-            if (textBoxGroup.Text.Trim().Length == 0)
+            if (groupTextBox.Text.Trim().Length == 0)
+            {
                 MessageBox.Show("A group is required", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
 
-                if (_Thread != null)
+                if (thread != null)
                 {
                     StopThread();
-                    buttonGenerate.Text = "Start";
-            //		this.progressBar1.Visible = false;
-                    this.tabControl1.Enabled = true;
+                    startButton.Text = "Start";
+                    //		this.progressBar1.Visible = false;
+                    settingsTab.Enabled = true;
                 }
                 else
                 {
-                    GetTitles = checkBoxTitle.Checked;
-                    GenerateAutoType = this.checkBoxAutoType.Checked;
-                    GroupName = this.textBoxGroup.Text.Trim();
-                    IconId = this.comboBoxIconName.SelectedIndex;
-                    FirefoxMasterPassword = this.textBoxPassword.Text;
+                    GetTitles = scrapeTitlesCheckBox.Checked;
+                    GenerateAutoType = autoTypeCheckBox.Checked;
+                    GroupName = groupTextBox.Text.Trim();
+                    IconId = iconComboBox.SelectedIndex;
+                    FirefoxMasterPassword = passwordTextBox.Text;
 
 
 
-                    if (radioButtonUseFirefox.Checked)
+                    if (importFirefoxRadioButton.Checked)
                     {
-                        if (this.comboBoxProfile.SelectedItem != null)
-                            ProfilePath = ((FirefoxProfileInfo)this.comboBoxProfile.SelectedItem).AbsolutePath;
+                        if (profileComboBox.SelectedItem != null)
+                        {
+                            ProfilePath = ((FirefoxProfileInfo)profileComboBox.SelectedItem).AbsolutePath;
+                        }
                         else
                         {
                             MessageBox.Show("No Profile Selected. Use Load More Profiles", "Profile Required", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
 
-                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        var saveFileDialog = new SaveFileDialog
+                        {
+                            Title = "Save KeePass file as...",
+                            Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*",
+                            FilterIndex = 1,
+                            RestoreDirectory = true,
+                            DefaultExt = "xml"
+                        };
 
-                        saveFileDialog.Title = "Save KeePass file as...";
-                        saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-                        saveFileDialog.FilterIndex = 1;
-                        saveFileDialog.RestoreDirectory = true;
-                        saveFileDialog.DefaultExt = "xml";
 
                         if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
                             KeePassFile = saveFileDialog.FileName;
-                            _Thread = new Thread(new ThreadStart(GenerateUsingFirefox));
+                            thread = new Thread(GenerateUsingFirefox);
                         }
                     }
                     else
                     {
-                        OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                        var openFileDialog1 = new OpenFileDialog
+                        {
+                            Title = "Select the exported Firefox password file",
+                            Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*",
+                            FilterIndex = 1,
+                            RestoreDirectory = true
+                        };
 
-                        openFileDialog1.Title = "Select the exported Firefox password file";
-                        openFileDialog1.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-                        openFileDialog1.FilterIndex = 1;
-                        openFileDialog1.RestoreDirectory = true;
 
                         if (openFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             FirefoxFile = openFileDialog1.FileName;
 
-                            SaveFileDialog saveFileDialog = new SaveFileDialog();
+                            var saveFileDialog = new SaveFileDialog
+                            {
+                                Title = "Save KeePass file as...",
+                                Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*",
+                                FilterIndex = 1,
+                                RestoreDirectory = true,
+                                DefaultExt = "xml"
+                            };
 
-                            saveFileDialog.Title = "Save KeePass file as...";
-                            saveFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-                            saveFileDialog.FilterIndex = 1;
-                            saveFileDialog.RestoreDirectory = true;
-                            saveFileDialog.DefaultExt = "xml";
 
                             if (saveFileDialog.ShowDialog() == DialogResult.OK)
                             {
                                 KeePassFile = saveFileDialog.FileName;
 
-                                _Thread = new Thread(new ThreadStart(GenerateUsingExport));
+                                thread = new Thread(GenerateUsingExport);
                             }
                         }
                     }
 
-                    if (_Thread != null)
+                    if (thread != null)
                     {
-                        _Thread.Name = "Converter";
+                        thread.Name = "Converter";
                 //		this.progressBar1.Visible = true;
-                        _Thread.Start();
+                        thread.Start();
 
-                        buttonGenerate.Text = "Stop";
-                        this.tabControl1.Enabled = false;
+                        startButton.Text = "Stop";
+                        settingsTab.Enabled = false;
                     }
                 }
             }
@@ -731,14 +698,9 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
         #region GUI Events
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void HomeLinkClickedEventHandler(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://websiteadvantage.com.au/Firefox-KeePass-Password-Import#utm_source=keepassfirefox&utm_medium=application&utm_content=link&utm_campaign=converter-" + KeePassUtilities.Version);
-        }
-
-        private void checkBoxTitle_CheckedChanged(object sender, EventArgs e)
-        {
-    //		this.checkBoxAutoType.Enabled = this.checkBoxTitle.Checked;
+            Process.Start("https://websiteadvantage.com.au/Firefox-KeePass-Password-Import#utm_source=keepassfirefox&utm_medium=application&utm_content=link&utm_campaign=converter-" + Version);
         }
 
         /// <summary>
@@ -746,52 +708,54 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void CancelClickEventHandler(object sender, EventArgs e)
         {
-            this.StopThread();
-            this.Close();
+            StopThread();
+            Close();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void ImportFirefoxChangedEventHandler(object sender, EventArgs e)
         {
-            groupBoxFirefox.Enabled = radioButtonUseFirefox.Checked;
+            firefoxSettings.Enabled = importFirefoxRadioButton.Checked;
         }
 
-        private void linkLabelExporter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ExtensionLinkClickedEventHandler(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://addons.mozilla.org/en-US/firefox/addon/2848");
         }
 
-        private void buttonHelp_Click(object sender, EventArgs e)
+        private void HelpClickEventHandler(object sender, EventArgs e)
         {
-            Process.Start("https://websiteadvantage.com.au/Firefox-KeePass-Password-Import#utm_source=keepassfirefox&utm_medium=application&utm_content=help&utm_campaign=converter-" + KeePassUtilities.Version);
+            Process.Start("https://websiteadvantage.com.au/Firefox-KeePass-Password-Import#utm_source=keepassfirefox&utm_medium=application&utm_content=help&utm_campaign=converter-" + Version);
         }
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        private void PluginLinkClickedEventHandler(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://keepass.info/plugins.html#xmlimport");
         }
-        #endregion
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form1LoadEventHandler(object sender, EventArgs e)
         {
-            List<FirefoxProfileInfo> profiles = FirefoxProfileInfo.FindFirefoxProfileInfos();
-            this.comboBoxProfile.DataSource = profiles;
-            this.comboBoxProfile.DisplayMember = "Name";
+            LoggerService.Initialise();
 
-            this.Text = "Web Site Advantage Firefox to KeePass Converter (" + KeePassUtilities.Version + ")";
+            List<FirefoxProfileInfo> profiles = FirefoxProfileInfo.FindFirefoxProfileInfos();
+            profileComboBox.DataSource = profiles;
+            profileComboBox.DisplayMember = "Name";
+
+            Text = $"Web Site Advantage Firefox to KeePass Converter ({Version})";
 
             foreach (FirefoxProfileInfo profile in profiles)
             {
                 if (profile.Default)
                 {
-                    this.comboBoxProfile.SelectedItem = profile;
+                    this.profileComboBox.SelectedItem = profile;
                     break;
                 }
             }
 
         }
 
-        private void buttonFindProfiles_Click(object sender, EventArgs e)
+        private void FindProfilesClickEventHandler(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
                 "Yes - If you wish to load profiles via the profiles ini file."+ Environment.NewLine+
@@ -811,12 +775,12 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    List<FirefoxProfileInfo> list = (List<FirefoxProfileInfo>)this.comboBoxProfile.DataSource;
+                    List<FirefoxProfileInfo> list = (List<FirefoxProfileInfo>)profileComboBox.DataSource;
                     FirefoxProfileInfo.FindFirefoxProfileInfosFromIniFile(openFileDialog1.FileName, list);
 
                     // get it to refresh!
-                    this.comboBoxProfile.DataSource = null;
-                    this.comboBoxProfile.DataSource = list;
+                    profileComboBox.DataSource = null;
+                    profileComboBox.DataSource = list;
                 }
             }
 
@@ -831,7 +795,7 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                 if (openFolderDialog1.ShowDialog() == DialogResult.OK)
                 {
 
-                    List<FirefoxProfileInfo> list = (List<FirefoxProfileInfo>)this.comboBoxProfile.DataSource;
+                    List<FirefoxProfileInfo> list = (List<FirefoxProfileInfo>)this.profileComboBox.DataSource;
                     FirefoxProfileInfo profile = new FirefoxProfileInfo();
 
                     profile.Name = openFolderDialog1.SelectedPath.Substring(openFolderDialog1.SelectedPath.LastIndexOf(@"\")+1);
@@ -842,18 +806,17 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
                     list.Add(profile);
 
                     // get it to refresh!
-                    this.comboBoxProfile.DataSource = null;
-                    this.comboBoxProfile.DataSource = list;
+                    this.profileComboBox.DataSource = null;
+                    this.profileComboBox.DataSource = list;
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DonateClickEventHandler(object sender, EventArgs e)
         {
-            Process.Start("https://websiteadvantage.com.au/Firefox-KeePass-Password-Import#utm_source=keepassfirefox&utm_medium=application&utm_content=help&utm_campaign=converterdonate-" + KeePassUtilities.Version);
-
+            Process.Start("https://websiteadvantage.com.au/Firefox-KeePass-Password-Import#utm_source=keepassfirefox&utm_medium=application&utm_content=help&utm_campaign=converterdonate-" + Version);
         }
 
-
+        #endregion
     }
 }

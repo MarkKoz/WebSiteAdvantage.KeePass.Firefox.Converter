@@ -29,262 +29,261 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.textBoxGroup = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.linkLabelExporter = new System.Windows.Forms.LinkLabel();
-            this.radioButtonImport = new System.Windows.Forms.RadioButton();
-            this.radioButtonUseFirefox = new System.Windows.Forms.RadioButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.checkBoxTitle = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBoxIncludeImportNotes = new System.Windows.Forms.CheckBox();
-            this.checkBoxAutoType = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.comboBoxIconName = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBoxFirefox = new System.Windows.Forms.GroupBox();
-            this.buttonFindProfiles = new System.Windows.Forms.Button();
-            this.comboBoxProfile = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.buttonHelp = new System.Windows.Forms.Button();
-            this.buttonGenerate = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBoxFirefox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupTextBox = new System.Windows.Forms.TextBox();
+            this.groupLabel = new System.Windows.Forms.Label();
+            this.settingsTab = new System.Windows.Forms.TabControl();
+            this.settingsPage = new System.Windows.Forms.TabPage();
+            this.methodSettings = new System.Windows.Forms.GroupBox();
+            this.extensionLink = new System.Windows.Forms.LinkLabel();
+            this.importXmlRadioButton = new System.Windows.Forms.RadioButton();
+            this.importFirefoxRadioButton = new System.Windows.Forms.RadioButton();
+            this.scraperSettings = new System.Windows.Forms.GroupBox();
+            this.scrapeTitlesCheckBox = new System.Windows.Forms.CheckBox();
+            this.warningContainer = new System.Windows.Forms.GroupBox();
+            this.warningMessage = new System.Windows.Forms.Label();
+            this.keePassSettings = new System.Windows.Forms.GroupBox();
+            this.importNotesCheckBox = new System.Windows.Forms.CheckBox();
+            this.autoTypeCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupNote = new System.Windows.Forms.Label();
+            this.keePassLogo = new System.Windows.Forms.PictureBox();
+            this.iconComboBox = new System.Windows.Forms.ComboBox();
+            this.iconLabel = new System.Windows.Forms.Label();
+            this.firefoxSettings = new System.Windows.Forms.GroupBox();
+            this.findProfilesButton = new System.Windows.Forms.Button();
+            this.profileComboBox = new System.Windows.Forms.ComboBox();
+            this.profileLabel = new System.Windows.Forms.Label();
+            this.firefoxLogo = new System.Windows.Forms.PictureBox();
+            this.passwordNote = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.closeButton = new System.Windows.Forms.Button();
+            this.homeLink = new System.Windows.Forms.LinkLabel();
+            this.description = new System.Windows.Forms.Label();
+            this.header = new System.Windows.Forms.ListBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.pluginLink = new System.Windows.Forms.LinkLabel();
+            this.donateButton = new System.Windows.Forms.Button();
+            this.helpButton = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
+            this.settingsTab.SuspendLayout();
+            this.settingsPage.SuspendLayout();
+            this.methodSettings.SuspendLayout();
+            this.scraperSettings.SuspendLayout();
+            this.warningContainer.SuspendLayout();
+            this.keePassSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keePassLogo)).BeginInit();
+            this.firefoxSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.firefoxLogo)).BeginInit();
             this.SuspendLayout();
             //
-            // textBoxGroup
+            // groupTextBox
             //
-            this.textBoxGroup.Location = new System.Drawing.Point(106, 18);
-            this.textBoxGroup.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxGroup.Name = "textBoxGroup";
-            this.textBoxGroup.Size = new System.Drawing.Size(113, 20);
-            this.textBoxGroup.TabIndex = 12;
-            this.textBoxGroup.Text = "General";
+            this.groupTextBox.Location = new System.Drawing.Point(106, 18);
+            this.groupTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.groupTextBox.Name = "groupTextBox";
+            this.groupTextBox.Size = new System.Drawing.Size(113, 20);
+            this.groupTextBox.TabIndex = 12;
+            this.groupTextBox.Text = "General";
             //
-            // label2
+            // groupLabel
             //
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 21);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Group";
+            this.groupLabel.AutoSize = true;
+            this.groupLabel.Location = new System.Drawing.Point(17, 21);
+            this.groupLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.groupLabel.Name = "groupLabel";
+            this.groupLabel.Size = new System.Drawing.Size(36, 13);
+            this.groupLabel.TabIndex = 11;
+            this.groupLabel.Text = "Group";
             //
-            // tabControl1
+            // settingsTab
             //
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(12, 101);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(512, 443);
-            this.tabControl1.TabIndex = 19;
+            this.settingsTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsTab.Controls.Add(this.settingsPage);
+            this.settingsTab.Location = new System.Drawing.Point(12, 101);
+            this.settingsTab.Name = "settingsTab";
+            this.settingsTab.SelectedIndex = 0;
+            this.settingsTab.Size = new System.Drawing.Size(512, 443);
+            this.settingsTab.TabIndex = 19;
             //
-            // tabPage1
+            // settingsPage
             //
-            this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.groupBox5);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBoxFirefox);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(504, 417);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Settings";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.settingsPage.Controls.Add(this.methodSettings);
+            this.settingsPage.Controls.Add(this.scraperSettings);
+            this.settingsPage.Controls.Add(this.keePassSettings);
+            this.settingsPage.Controls.Add(this.firefoxSettings);
+            this.settingsPage.Location = new System.Drawing.Point(4, 22);
+            this.settingsPage.Name = "settingsPage";
+            this.settingsPage.Padding = new System.Windows.Forms.Padding(3);
+            this.settingsPage.Size = new System.Drawing.Size(504, 417);
+            this.settingsPage.TabIndex = 0;
+            this.settingsPage.Text = "Settings";
+            this.settingsPage.UseVisualStyleBackColor = true;
             //
-            // groupBox6
+            // methodSettings
             //
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.linkLabelExporter);
-            this.groupBox6.Controls.Add(this.radioButtonImport);
-            this.groupBox6.Controls.Add(this.radioButtonUseFirefox);
-            this.groupBox6.Location = new System.Drawing.Point(3, 6);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(492, 81);
-            this.groupBox6.TabIndex = 31;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Method";
+            this.methodSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.methodSettings.Controls.Add(this.extensionLink);
+            this.methodSettings.Controls.Add(this.importXmlRadioButton);
+            this.methodSettings.Controls.Add(this.importFirefoxRadioButton);
+            this.methodSettings.Location = new System.Drawing.Point(3, 6);
+            this.methodSettings.Name = "methodSettings";
+            this.methodSettings.Size = new System.Drawing.Size(492, 81);
+            this.methodSettings.TabIndex = 31;
+            this.methodSettings.TabStop = false;
+            this.methodSettings.Text = "Method";
             //
-            // linkLabelExporter
+            // extensionLink
             //
-            this.linkLabelExporter.AutoSize = true;
-            this.linkLabelExporter.Location = new System.Drawing.Point(263, 46);
-            this.linkLabelExporter.Name = "linkLabelExporter";
-            this.linkLabelExporter.Size = new System.Drawing.Size(178, 13);
-            this.linkLabelExporter.TabIndex = 2;
-            this.linkLabelExporter.TabStop = true;
-            this.linkLabelExporter.Text = "Firefox Password Exporter Extension";
-            this.linkLabelExporter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelExporter_LinkClicked);
+            this.extensionLink.AutoSize = true;
+            this.extensionLink.Location = new System.Drawing.Point(263, 46);
+            this.extensionLink.Name = "extensionLink";
+            this.extensionLink.Size = new System.Drawing.Size(178, 13);
+            this.extensionLink.TabIndex = 2;
+            this.extensionLink.TabStop = true;
+            this.extensionLink.Text = "Firefox Password Exporter Extension";
+            this.extensionLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ExtensionLinkClickedEventHandler);
             //
-            // radioButtonImport
+            // importXmlRadioButton
             //
-            this.radioButtonImport.AutoSize = true;
-            this.radioButtonImport.Location = new System.Drawing.Point(15, 44);
-            this.radioButtonImport.Name = "radioButtonImport";
-            this.radioButtonImport.Size = new System.Drawing.Size(257, 17);
-            this.radioButtonImport.TabIndex = 1;
-            this.radioButtonImport.Text = "Read the data from a password file generated by ";
-            this.radioButtonImport.UseVisualStyleBackColor = true;
+            this.importXmlRadioButton.AutoSize = true;
+            this.importXmlRadioButton.Location = new System.Drawing.Point(15, 44);
+            this.importXmlRadioButton.Name = "importXmlRadioButton";
+            this.importXmlRadioButton.Size = new System.Drawing.Size(257, 17);
+            this.importXmlRadioButton.TabIndex = 1;
+            this.importXmlRadioButton.Text = "Read the data from a password file generated by ";
+            this.importXmlRadioButton.UseVisualStyleBackColor = true;
             //
-            // radioButtonUseFirefox
+            // importFirefoxRadioButton
             //
-            this.radioButtonUseFirefox.AutoSize = true;
-            this.radioButtonUseFirefox.Checked = true;
-            this.radioButtonUseFirefox.Location = new System.Drawing.Point(15, 20);
-            this.radioButtonUseFirefox.Name = "radioButtonUseFirefox";
-            this.radioButtonUseFirefox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioButtonUseFirefox.Size = new System.Drawing.Size(204, 17);
-            this.radioButtonUseFirefox.TabIndex = 0;
-            this.radioButtonUseFirefox.TabStop = true;
-            this.radioButtonUseFirefox.Text = "Directly use Firefox to gather the data.";
-            this.radioButtonUseFirefox.UseVisualStyleBackColor = true;
-            this.radioButtonUseFirefox.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.importFirefoxRadioButton.AutoSize = true;
+            this.importFirefoxRadioButton.Checked = true;
+            this.importFirefoxRadioButton.Location = new System.Drawing.Point(15, 20);
+            this.importFirefoxRadioButton.Name = "importFirefoxRadioButton";
+            this.importFirefoxRadioButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.importFirefoxRadioButton.Size = new System.Drawing.Size(204, 17);
+            this.importFirefoxRadioButton.TabIndex = 0;
+            this.importFirefoxRadioButton.TabStop = true;
+            this.importFirefoxRadioButton.Text = "Directly use Firefox to gather the data.";
+            this.importFirefoxRadioButton.UseVisualStyleBackColor = true;
+            this.importFirefoxRadioButton.CheckedChanged += new System.EventHandler(this.ImportFirefoxChangedEventHandler);
             //
-            // groupBox5
+            // scraperSettings
             //
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.checkBoxTitle);
-            this.groupBox5.Controls.Add(this.groupBox1);
-            this.groupBox5.Location = new System.Drawing.Point(3, 316);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(492, 92);
-            this.groupBox5.TabIndex = 30;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Internet Access";
+            this.scraperSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.scraperSettings.Controls.Add(this.scrapeTitlesCheckBox);
+            this.scraperSettings.Controls.Add(this.warningContainer);
+            this.scraperSettings.Location = new System.Drawing.Point(3, 316);
+            this.scraperSettings.Name = "scraperSettings";
+            this.scraperSettings.Size = new System.Drawing.Size(492, 92);
+            this.scraperSettings.TabIndex = 30;
+            this.scraperSettings.TabStop = false;
+            this.scraperSettings.Text = "Internet Access";
             //
-            // checkBoxTitle
+            // scrapeTitlesCheckBox
             //
-            this.checkBoxTitle.AutoSize = true;
-            this.checkBoxTitle.Location = new System.Drawing.Point(20, 19);
-            this.checkBoxTitle.Name = "checkBoxTitle";
-            this.checkBoxTitle.Size = new System.Drawing.Size(156, 17);
-            this.checkBoxTitle.TabIndex = 24;
-            this.checkBoxTitle.Text = "Get Titles from the websites";
-            this.checkBoxTitle.UseVisualStyleBackColor = true;
-            this.checkBoxTitle.CheckedChanged += new System.EventHandler(this.checkBoxTitle_CheckedChanged);
+            this.scrapeTitlesCheckBox.AutoSize = true;
+            this.scrapeTitlesCheckBox.Location = new System.Drawing.Point(20, 19);
+            this.scrapeTitlesCheckBox.Name = "scrapeTitlesCheckBox";
+            this.scrapeTitlesCheckBox.Size = new System.Drawing.Size(156, 17);
+            this.scrapeTitlesCheckBox.TabIndex = 24;
+            this.scrapeTitlesCheckBox.Text = "Get Titles from the websites";
+            this.scrapeTitlesCheckBox.UseVisualStyleBackColor = true;
             //
-            // groupBox1
+            // warningContainer
             //
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.ForeColor = System.Drawing.Color.Red;
-            this.groupBox1.Location = new System.Drawing.Point(327, 19);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(152, 62);
-            this.groupBox1.TabIndex = 23;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Warning";
+            this.warningContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.warningContainer.BackColor = System.Drawing.Color.Transparent;
+            this.warningContainer.Controls.Add(this.warningMessage);
+            this.warningContainer.ForeColor = System.Drawing.Color.Red;
+            this.warningContainer.Location = new System.Drawing.Point(327, 19);
+            this.warningContainer.Name = "warningContainer";
+            this.warningContainer.Size = new System.Drawing.Size(152, 62);
+            this.warningContainer.TabIndex = 23;
+            this.warningContainer.TabStop = false;
+            this.warningContainer.Text = "Warning";
             //
-            // label7
+            // warningMessage
             //
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.ForeColor = System.Drawing.Color.Maroon;
-            this.label7.Location = new System.Drawing.Point(3, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(146, 43);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "You have to trust me if you allow this plugin to access the internet!";
+            this.warningMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.warningMessage.ForeColor = System.Drawing.Color.Maroon;
+            this.warningMessage.Location = new System.Drawing.Point(3, 16);
+            this.warningMessage.Name = "warningMessage";
+            this.warningMessage.Size = new System.Drawing.Size(146, 43);
+            this.warningMessage.TabIndex = 20;
+            this.warningMessage.Text = "You have to trust me if you allow this plugin to access the internet!";
             //
-            // groupBox3
+            // keePassSettings
             //
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.checkBoxIncludeImportNotes);
-            this.groupBox3.Controls.Add(this.checkBoxAutoType);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.pictureBox2);
-            this.groupBox3.Controls.Add(this.comboBoxIconName);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.textBoxGroup);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(3, 208);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(492, 102);
-            this.groupBox3.TabIndex = 29;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "KeePass";
+            this.keePassSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.keePassSettings.Controls.Add(this.importNotesCheckBox);
+            this.keePassSettings.Controls.Add(this.autoTypeCheckBox);
+            this.keePassSettings.Controls.Add(this.groupNote);
+            this.keePassSettings.Controls.Add(this.keePassLogo);
+            this.keePassSettings.Controls.Add(this.iconComboBox);
+            this.keePassSettings.Controls.Add(this.iconLabel);
+            this.keePassSettings.Controls.Add(this.groupTextBox);
+            this.keePassSettings.Controls.Add(this.groupLabel);
+            this.keePassSettings.Location = new System.Drawing.Point(3, 208);
+            this.keePassSettings.Name = "keePassSettings";
+            this.keePassSettings.Size = new System.Drawing.Size(492, 102);
+            this.keePassSettings.TabIndex = 29;
+            this.keePassSettings.TabStop = false;
+            this.keePassSettings.Text = "KeePass";
             //
-            // checkBoxIncludeImportNotes
+            // importNotesCheckBox
             //
-            this.checkBoxIncludeImportNotes.AutoSize = true;
-            this.checkBoxIncludeImportNotes.Checked = true;
-            this.checkBoxIncludeImportNotes.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxIncludeImportNotes.Location = new System.Drawing.Point(157, 79);
-            this.checkBoxIncludeImportNotes.Name = "checkBoxIncludeImportNotes";
-            this.checkBoxIncludeImportNotes.Size = new System.Drawing.Size(124, 17);
-            this.checkBoxIncludeImportNotes.TabIndex = 34;
-            this.checkBoxIncludeImportNotes.Text = "Include Import Notes";
-            this.checkBoxIncludeImportNotes.UseVisualStyleBackColor = true;
+            this.importNotesCheckBox.AutoSize = true;
+            this.importNotesCheckBox.Checked = true;
+            this.importNotesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.importNotesCheckBox.Location = new System.Drawing.Point(157, 79);
+            this.importNotesCheckBox.Name = "importNotesCheckBox";
+            this.importNotesCheckBox.Size = new System.Drawing.Size(124, 17);
+            this.importNotesCheckBox.TabIndex = 34;
+            this.importNotesCheckBox.Text = "Include Import Notes";
+            this.importNotesCheckBox.UseVisualStyleBackColor = true;
             //
-            // checkBoxAutoType
+            // autoTypeCheckBox
             //
-            this.checkBoxAutoType.AutoSize = true;
-            this.checkBoxAutoType.Checked = true;
-            this.checkBoxAutoType.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxAutoType.Location = new System.Drawing.Point(20, 79);
-            this.checkBoxAutoType.Name = "checkBoxAutoType";
-            this.checkBoxAutoType.Size = new System.Drawing.Size(131, 17);
-            this.checkBoxAutoType.TabIndex = 25;
-            this.checkBoxAutoType.Text = "Add Auto Type entries";
-            this.checkBoxAutoType.UseVisualStyleBackColor = true;
+            this.autoTypeCheckBox.AutoSize = true;
+            this.autoTypeCheckBox.Checked = true;
+            this.autoTypeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoTypeCheckBox.Location = new System.Drawing.Point(20, 79);
+            this.autoTypeCheckBox.Name = "autoTypeCheckBox";
+            this.autoTypeCheckBox.Size = new System.Drawing.Size(131, 17);
+            this.autoTypeCheckBox.TabIndex = 25;
+            this.autoTypeCheckBox.Text = "Add Auto Type entries";
+            this.autoTypeCheckBox.UseVisualStyleBackColor = true;
             //
-            // label3
+            // groupNote
             //
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(225, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 13);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "(created by KeePass if unknown)";
+            this.groupNote.AutoSize = true;
+            this.groupNote.Location = new System.Drawing.Point(225, 20);
+            this.groupNote.Name = "groupNote";
+            this.groupNote.Size = new System.Drawing.Size(163, 13);
+            this.groupNote.TabIndex = 33;
+            this.groupNote.Text = "(created by KeePass if unknown)";
             //
-            // pictureBox2
+            // keePassLogo
             //
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.keepasslogo_512;
-            this.pictureBox2.Location = new System.Drawing.Point(394, 15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(89, 81);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 32;
-            this.pictureBox2.TabStop = false;
+            this.keePassLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.keePassLogo.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.keepasslogo_512;
+            this.keePassLogo.Location = new System.Drawing.Point(394, 15);
+            this.keePassLogo.Name = "keePassLogo";
+            this.keePassLogo.Size = new System.Drawing.Size(89, 81);
+            this.keePassLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.keePassLogo.TabIndex = 32;
+            this.keePassLogo.TabStop = false;
             //
-            // comboBoxIconName
+            // iconComboBox
             //
-            this.comboBoxIconName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxIconName.FormattingEnabled = true;
-            this.comboBoxIconName.Items.AddRange(new object[] {
+            this.iconComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.iconComboBox.FormattingEnabled = true;
+            this.iconComboBox.Items.AddRange(new object[] {
             "Key",
             "World",
             "Warning",
@@ -351,252 +350,252 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
             "SortUpArrow",
             "SortDownArrow",
             "Count"});
-            this.comboBoxIconName.Location = new System.Drawing.Point(106, 43);
-            this.comboBoxIconName.Name = "comboBoxIconName";
-            this.comboBoxIconName.Size = new System.Drawing.Size(113, 21);
-            this.comboBoxIconName.TabIndex = 16;
+            this.iconComboBox.Location = new System.Drawing.Point(106, 43);
+            this.iconComboBox.Name = "iconComboBox";
+            this.iconComboBox.Size = new System.Drawing.Size(113, 21);
+            this.iconComboBox.TabIndex = 16;
             //
-            // label4
+            // iconLabel
             //
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 46);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Icon";
+            this.iconLabel.AutoSize = true;
+            this.iconLabel.Location = new System.Drawing.Point(17, 46);
+            this.iconLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.iconLabel.Name = "iconLabel";
+            this.iconLabel.Size = new System.Drawing.Size(28, 13);
+            this.iconLabel.TabIndex = 15;
+            this.iconLabel.Text = "Icon";
             //
-            // groupBoxFirefox
+            // firefoxSettings
             //
-            this.groupBoxFirefox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxFirefox.Controls.Add(this.buttonFindProfiles);
-            this.groupBoxFirefox.Controls.Add(this.comboBoxProfile);
-            this.groupBoxFirefox.Controls.Add(this.label5);
-            this.groupBoxFirefox.Controls.Add(this.pictureBox1);
-            this.groupBoxFirefox.Controls.Add(this.label1);
-            this.groupBoxFirefox.Controls.Add(this.label6);
-            this.groupBoxFirefox.Controls.Add(this.textBoxPassword);
-            this.groupBoxFirefox.Location = new System.Drawing.Point(3, 93);
-            this.groupBoxFirefox.Name = "groupBoxFirefox";
-            this.groupBoxFirefox.Size = new System.Drawing.Size(492, 109);
-            this.groupBoxFirefox.TabIndex = 28;
-            this.groupBoxFirefox.TabStop = false;
-            this.groupBoxFirefox.Text = "Firefox";
+            this.firefoxSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.firefoxSettings.Controls.Add(this.findProfilesButton);
+            this.firefoxSettings.Controls.Add(this.profileComboBox);
+            this.firefoxSettings.Controls.Add(this.profileLabel);
+            this.firefoxSettings.Controls.Add(this.firefoxLogo);
+            this.firefoxSettings.Controls.Add(this.passwordNote);
+            this.firefoxSettings.Controls.Add(this.passwordLabel);
+            this.firefoxSettings.Controls.Add(this.passwordTextBox);
+            this.firefoxSettings.Location = new System.Drawing.Point(3, 93);
+            this.firefoxSettings.Name = "firefoxSettings";
+            this.firefoxSettings.Size = new System.Drawing.Size(492, 109);
+            this.firefoxSettings.TabIndex = 28;
+            this.firefoxSettings.TabStop = false;
+            this.firefoxSettings.Text = "Firefox";
             //
-            // buttonFindProfiles
+            // findProfilesButton
             //
-            this.buttonFindProfiles.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.openfolderHS;
-            this.buttonFindProfiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonFindProfiles.Location = new System.Drawing.Point(258, 19);
-            this.buttonFindProfiles.Name = "buttonFindProfiles";
-            this.buttonFindProfiles.Size = new System.Drawing.Size(130, 23);
-            this.buttonFindProfiles.TabIndex = 34;
-            this.buttonFindProfiles.Text = "Load More Profiles...";
-            this.buttonFindProfiles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonFindProfiles.UseVisualStyleBackColor = true;
-            this.buttonFindProfiles.Click += new System.EventHandler(this.buttonFindProfiles_Click);
+            this.findProfilesButton.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.openfolderHS;
+            this.findProfilesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.findProfilesButton.Location = new System.Drawing.Point(258, 19);
+            this.findProfilesButton.Name = "findProfilesButton";
+            this.findProfilesButton.Size = new System.Drawing.Size(130, 23);
+            this.findProfilesButton.TabIndex = 34;
+            this.findProfilesButton.Text = "Load More Profiles...";
+            this.findProfilesButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.findProfilesButton.UseVisualStyleBackColor = true;
+            this.findProfilesButton.Click += new System.EventHandler(this.FindProfilesClickEventHandler);
             //
-            // comboBoxProfile
+            // profileComboBox
             //
-            this.comboBoxProfile.FormattingEnabled = true;
-            this.comboBoxProfile.Location = new System.Drawing.Point(100, 19);
-            this.comboBoxProfile.Name = "comboBoxProfile";
-            this.comboBoxProfile.Size = new System.Drawing.Size(152, 21);
-            this.comboBoxProfile.TabIndex = 33;
+            this.profileComboBox.FormattingEnabled = true;
+            this.profileComboBox.Location = new System.Drawing.Point(100, 19);
+            this.profileComboBox.Name = "profileComboBox";
+            this.profileComboBox.Size = new System.Drawing.Size(152, 21);
+            this.profileComboBox.TabIndex = 33;
             //
-            // label5
+            // profileLabel
             //
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Profile";
+            this.profileLabel.AutoSize = true;
+            this.profileLabel.Location = new System.Drawing.Point(6, 22);
+            this.profileLabel.Name = "profileLabel";
+            this.profileLabel.Size = new System.Drawing.Size(36, 13);
+            this.profileLabel.TabIndex = 32;
+            this.profileLabel.Text = "Profile";
             //
-            // pictureBox1
+            // firefoxLogo
             //
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.firefox_128_509;
-            this.pictureBox1.Location = new System.Drawing.Point(394, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(89, 89);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 31;
-            this.pictureBox1.TabStop = false;
+            this.firefoxLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.firefoxLogo.BackColor = System.Drawing.Color.Transparent;
+            this.firefoxLogo.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.firefox_128_509;
+            this.firefoxLogo.Location = new System.Drawing.Point(394, 14);
+            this.firefoxLogo.Name = "firefoxLogo";
+            this.firefoxLogo.Size = new System.Drawing.Size(89, 89);
+            this.firefoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.firefoxLogo.TabIndex = 31;
+            this.firefoxLogo.TabStop = false;
             //
-            // label1
+            // passwordNote
             //
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(100, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 13);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "(required if you have set a master password in firefox)";
+            this.passwordNote.AutoSize = true;
+            this.passwordNote.Location = new System.Drawing.Point(100, 69);
+            this.passwordNote.Name = "passwordNote";
+            this.passwordNote.Size = new System.Drawing.Size(256, 13);
+            this.passwordNote.TabIndex = 26;
+            this.passwordNote.Text = "(required if you have set a master password in firefox)";
             //
-            // label6
+            // passwordLabel
             //
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 49);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Master Password";
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordLabel.Location = new System.Drawing.Point(6, 49);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(88, 13);
+            this.passwordLabel.TabIndex = 22;
+            this.passwordLabel.Text = "Master Password";
             //
-            // textBoxPassword
+            // passwordTextBox
             //
-            this.textBoxPassword.Location = new System.Drawing.Point(100, 46);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(288, 20);
-            this.textBoxPassword.TabIndex = 21;
+            this.passwordTextBox.Location = new System.Drawing.Point(100, 46);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
+            this.passwordTextBox.Size = new System.Drawing.Size(288, 20);
+            this.passwordTextBox.TabIndex = 21;
             //
-            // buttonCancel
+            // closeButton
             //
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(469, 581);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(55, 23);
-            this.buttonCancel.TabIndex = 21;
-            this.buttonCancel.Text = "Close";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.closeButton.Location = new System.Drawing.Point(469, 581);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(55, 23);
+            this.closeButton.TabIndex = 21;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CancelClickEventHandler);
             //
-            // linkLabel1
+            // homeLink
             //
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.BackColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(476, 73);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(35, 13);
-            this.linkLabel1.TabIndex = 27;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Home";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.homeLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.homeLink.AutoSize = true;
+            this.homeLink.BackColor = System.Drawing.Color.White;
+            this.homeLink.Location = new System.Drawing.Point(476, 73);
+            this.homeLink.Name = "homeLink";
+            this.homeLink.Size = new System.Drawing.Size(35, 13);
+            this.homeLink.TabIndex = 27;
+            this.homeLink.TabStop = true;
+            this.homeLink.Text = "Home";
+            this.homeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HomeLinkClickedEventHandler);
             //
-            // label8
+            // description
             //
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.BackColor = System.Drawing.SystemColors.Window;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(20, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(491, 51);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "This tool will read password data stored in Firefox and create a file suitable fo" +
-                "r importing into KeePass using the XML import plugin.";
+            this.description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.description.BackColor = System.Drawing.SystemColors.Window;
+            this.description.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.description.Location = new System.Drawing.Point(20, 22);
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(491, 51);
+            this.description.TabIndex = 0;
+            this.description.Text = "This tool will read password data stored in Firefox and create a file suitable fo" +
+    "r importing into KeePass using the XML import plugin.";
             //
-            // listBox1
+            // header
             //
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 13);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(511, 82);
-            this.listBox1.TabIndex = 29;
+            this.header.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.header.FormattingEnabled = true;
+            this.header.Location = new System.Drawing.Point(12, 13);
+            this.header.Name = "header";
+            this.header.Size = new System.Drawing.Size(511, 82);
+            this.header.TabIndex = 29;
             //
-            // progressBar1
+            // progressBar
             //
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(12, 550);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(508, 23);
-            this.progressBar1.TabIndex = 31;
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(12, 550);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(508, 23);
+            this.progressBar.TabIndex = 31;
             //
-            // linkLabel2
+            // pluginLink
             //
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.BackColor = System.Drawing.Color.White;
-            this.linkLabel2.Location = new System.Drawing.Point(21, 73);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(138, 13);
-            this.linkLabel2.TabIndex = 32;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "KeePass XML Import Plugin";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.pluginLink.AutoSize = true;
+            this.pluginLink.BackColor = System.Drawing.Color.White;
+            this.pluginLink.Location = new System.Drawing.Point(21, 73);
+            this.pluginLink.Name = "pluginLink";
+            this.pluginLink.Size = new System.Drawing.Size(138, 13);
+            this.pluginLink.TabIndex = 32;
+            this.pluginLink.TabStop = true;
+            this.pluginLink.Text = "KeePass XML Import Plugin";
+            this.pluginLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PluginLinkClickedEventHandler);
             //
-            // button1
+            // donateButton
             //
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.beer3;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(76, 581);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 23);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Buy me a Beer...";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.donateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.donateButton.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.beer3;
+            this.donateButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.donateButton.Location = new System.Drawing.Point(76, 581);
+            this.donateButton.Name = "donateButton";
+            this.donateButton.Size = new System.Drawing.Size(114, 23);
+            this.donateButton.TabIndex = 33;
+            this.donateButton.Text = "Buy me a Beer...";
+            this.donateButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.donateButton.UseVisualStyleBackColor = true;
+            this.donateButton.Click += new System.EventHandler(this.DonateClickEventHandler);
             //
-            // buttonHelp
+            // helpButton
             //
-            this.buttonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonHelp.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.Help;
-            this.buttonHelp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonHelp.Location = new System.Drawing.Point(12, 581);
-            this.buttonHelp.Name = "buttonHelp";
-            this.buttonHelp.Size = new System.Drawing.Size(60, 23);
-            this.buttonHelp.TabIndex = 30;
-            this.buttonHelp.Text = "Help...";
-            this.buttonHelp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonHelp.UseVisualStyleBackColor = true;
-            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            this.helpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.helpButton.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.Help;
+            this.helpButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.helpButton.Location = new System.Drawing.Point(12, 581);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(60, 23);
+            this.helpButton.TabIndex = 30;
+            this.helpButton.Text = "Help...";
+            this.helpButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.helpButton.UseVisualStyleBackColor = true;
+            this.helpButton.Click += new System.EventHandler(this.HelpClickEventHandler);
             //
-            // buttonGenerate
+            // startButton
             //
-            this.buttonGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonGenerate.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.FormRunHS;
-            this.buttonGenerate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonGenerate.Location = new System.Drawing.Point(352, 581);
-            this.buttonGenerate.Name = "buttonGenerate";
-            this.buttonGenerate.Size = new System.Drawing.Size(112, 23);
-            this.buttonGenerate.TabIndex = 16;
-            this.buttonGenerate.Text = "Start";
-            this.buttonGenerate.UseVisualStyleBackColor = true;
-            this.buttonGenerate.Click += new System.EventHandler(this.buttonStart_Click);
+            this.startButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.startButton.Image = global::WebSiteAdvantage.KeePass.Firefox.Converter.Properties.Resources.FormRunHS;
+            this.startButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.startButton.Location = new System.Drawing.Point(352, 581);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(112, 23);
+            this.startButton.TabIndex = 16;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.StartClickEventHandler);
             //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 615);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.buttonHelp);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonGenerate);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.donateButton);
+            this.Controls.Add(this.pluginLink);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.helpButton);
+            this.Controls.Add(this.homeLink);
+            this.Controls.Add(this.description);
+            this.Controls.Add(this.header);
+            this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.settingsTab);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(544, 621);
             this.Name = "Form1";
             this.Text = "Web Site Advantage Firefox to KeePass Converter";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBoxFirefox.ResumeLayout(false);
-            this.groupBoxFirefox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.Form1LoadEventHandler);
+            this.settingsTab.ResumeLayout(false);
+            this.settingsPage.ResumeLayout(false);
+            this.methodSettings.ResumeLayout(false);
+            this.methodSettings.PerformLayout();
+            this.scraperSettings.ResumeLayout(false);
+            this.scraperSettings.PerformLayout();
+            this.warningContainer.ResumeLayout(false);
+            this.keePassSettings.ResumeLayout(false);
+            this.keePassSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keePassLogo)).EndInit();
+            this.firefoxSettings.ResumeLayout(false);
+            this.firefoxSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.firefoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -604,41 +603,41 @@ namespace WebSiteAdvantage.KeePass.Firefox.Converter
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBoxGroup;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonGenerate;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBoxFirefox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.ComboBox comboBoxIconName;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox checkBoxAutoType;
-        private System.Windows.Forms.CheckBox checkBoxTitle;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton radioButtonImport;
-        private System.Windows.Forms.RadioButton radioButtonUseFirefox;
-        private System.Windows.Forms.LinkLabel linkLabelExporter;
-        private System.Windows.Forms.Button buttonHelp;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.ComboBox comboBoxProfile;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button buttonFindProfiles;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBoxIncludeImportNotes;
+        private System.Windows.Forms.TextBox groupTextBox;
+        private System.Windows.Forms.Label groupLabel;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.TabControl settingsTab;
+        private System.Windows.Forms.TabPage settingsPage;
+        private System.Windows.Forms.GroupBox firefoxSettings;
+        private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.TextBox passwordTextBox;
+        private System.Windows.Forms.GroupBox keePassSettings;
+        private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.ComboBox iconComboBox;
+        private System.Windows.Forms.Label iconLabel;
+        private System.Windows.Forms.Label passwordNote;
+        private System.Windows.Forms.GroupBox scraperSettings;
+        private System.Windows.Forms.CheckBox autoTypeCheckBox;
+        private System.Windows.Forms.CheckBox scrapeTitlesCheckBox;
+        private System.Windows.Forms.GroupBox warningContainer;
+        private System.Windows.Forms.Label warningMessage;
+        private System.Windows.Forms.LinkLabel homeLink;
+        private System.Windows.Forms.Label description;
+        private System.Windows.Forms.ListBox header;
+        private System.Windows.Forms.GroupBox methodSettings;
+        private System.Windows.Forms.RadioButton importXmlRadioButton;
+        private System.Windows.Forms.RadioButton importFirefoxRadioButton;
+        private System.Windows.Forms.LinkLabel extensionLink;
+        private System.Windows.Forms.Button helpButton;
+        private System.Windows.Forms.PictureBox firefoxLogo;
+        private System.Windows.Forms.PictureBox keePassLogo;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label groupNote;
+        private System.Windows.Forms.LinkLabel pluginLink;
+        private System.Windows.Forms.ComboBox profileComboBox;
+        private System.Windows.Forms.Label profileLabel;
+        private System.Windows.Forms.Button findProfilesButton;
+        private System.Windows.Forms.Button donateButton;
+        private System.Windows.Forms.CheckBox importNotesCheckBox;
     }
 }
